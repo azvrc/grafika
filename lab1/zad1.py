@@ -6,15 +6,12 @@ from glfw.GLFW import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
-
 def startup():
     update_viewport(None, 400, 400)
     glClearColor(0.5, 0.5, 0.5, 1.0)
 
-
 def shutdown():
     pass
-
 
 def render(time): #funkcja do modyfikacji - odpowiada za generowanie obrazu
     glClear(GL_COLOR_BUFFER_BIT)
@@ -30,7 +27,6 @@ def render(time): #funkcja do modyfikacji - odpowiada za generowanie obrazu
 
     glFlush()
 
-
 def update_viewport(window, width, height): #przeskalowane okno
     if width == 0:
         width = 1
@@ -39,7 +35,7 @@ def update_viewport(window, width, height): #przeskalowane okno
     aspect_ratio = width / height
 
     glMatrixMode(GL_PROJECTION)
-    glViewport(0, 0, width, height)
+    glViewport(20, 50, width, height)
     glLoadIdentity()
 
     if width <= height:
@@ -74,7 +70,6 @@ def main():
     shutdown()
 
     glfwTerminate()
-
 
 if __name__ == '__main__':
     main()

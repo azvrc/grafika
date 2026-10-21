@@ -6,19 +6,19 @@ from glfw.GLFW import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
+RANDOMIZE = random.randint(10, 300)
 
 def startup():
     update_viewport(None, 400, 400)
     glClearColor(0.5, 0.5, 0.5, 1.0)
 
-
 def shutdown():
     pass
 
-
 def rectangle(x, y, a, b, d=0.0):
     # x, y - placement, a, b - boki, d - deformacja
-    x0, y0 = x, y
+    x0 = x + random.uniform(-d, d)
+    y0 = y + random.uniform(-d, d)
     x1 = x + a + random.uniform(-d, d)
     y1 = y + random.uniform(-d, d)
     x2 = x + a + random.uniform(-d, d)
@@ -48,10 +48,8 @@ def rectangle(x, y, a, b, d=0.0):
 def render(time):
     glClear(GL_COLOR_BUFFER_BIT)
 
-    random.seed(30)
-
-    rectangle(-50.0, -50.0, 100.0, 100.0, 10.0)
-
+    random.seed(RANDOMIZE)
+    rectangle(-30.0, -30.0, 80.0, 100.0, 15.0)
     glFlush()
 
 

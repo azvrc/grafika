@@ -39,8 +39,7 @@ def rectangle(x, y, a, b):
 def render(time):
     glClear(GL_COLOR_BUFFER_BIT)
 
-    rectangle(0.0, 0.0, 80.0, 60.0)
-
+    rectangle(-25.0, -10.0, 100.0, 70.0)
     glFlush()
 
 
@@ -63,7 +62,6 @@ def update_viewport(window, width, height):
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
 
-
 def main():
     if not glfwInit():
         sys.exit(-1)
@@ -83,9 +81,7 @@ def main():
         glfwSwapBuffers(window)
         glfwPollEvents()
     shutdown()
-
     glfwTerminate()
-
 
 if __name__ == '__main__':
     main()

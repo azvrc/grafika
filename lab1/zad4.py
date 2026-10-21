@@ -5,18 +5,14 @@ from glfw.GLFW import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
-
 def startup():
     update_viewport(None, 400, 400)
     glClearColor(0.2, 0.2, 0.2, 1.0)
 
-
 def shutdown():
     pass
 
-
 def rectangle(x, y, a, b):
-
     glBegin(GL_TRIANGLES)
     glColor3f(0.4, 0.4, 0)
     glVertex2f(x, y)
@@ -32,7 +28,6 @@ def rectangle(x, y, a, b):
     glColor3f(0.9, 0.9, 0.9)
     glVertex2f(x, y + b)
     glEnd()
-
 
 def carpet(x, y, a, b, depth):
     if depth == 0:
@@ -52,9 +47,7 @@ def render(time):
 
     #głębokość rekurencji
     recursion_depth = 2
-
-    carpet(-50, -50, 100, 100, recursion_depth)
-
+    carpet(-40, -50, 130, 150, recursion_depth)
     glFlush()
 
 
@@ -77,7 +70,6 @@ def update_viewport(window, width, height):
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
 
-
 def main():
     if not glfwInit():
         sys.exit(-1)
@@ -97,9 +89,7 @@ def main():
         glfwSwapBuffers(window)
         glfwPollEvents()
     shutdown()
-
     glfwTerminate()
-
 
 if __name__ == '__main__':
     main()
