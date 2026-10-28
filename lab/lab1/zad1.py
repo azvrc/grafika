@@ -1,49 +1,33 @@
 #!/usr/bin/env python3
+#sciezka do interpretera
 import sys
 
 from glfw.GLFW import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
-
 def startup():
     update_viewport(None, 400, 400)
     glClearColor(0.5, 0.5, 0.5, 1.0)
 
-
 def shutdown():
     pass
 
-
-def rectangle(x, y, a, b):
-    # x,y - placement, a - szerokość, b - wysokość
-    glBegin(GL_TRIANGLES)
-
-    glColor3f(1, 0, 1)
-    glVertex2f(x, y)
-    glColor3f(0.5, 0, 1)
-    glVertex2f(x + a, y)
-    glColor3f(0, 0, 1)
-    glVertex2f(x + a, y + b)
-
-    glColor3f(0, 1, 0)
-    glVertex2f(x, y)
-    glColor3f(0, 1, 0.5)
-    glVertex2f(x + a, y + b)
-    glColor3f(0, 1, 1)
-    glVertex2f(x, y + b)
-
-    glEnd()
-
-
-def render(time):
+def render(time): #funkcja do modyfikacji - odpowiada za generowanie obrazu
     glClear(GL_COLOR_BUFFER_BIT)
 
-    rectangle(-25.0, -10.0, 100.0, 70.0)
+    glBegin(GL_TRIANGLES)
+    glColor3f(0.0, 0.0, 1.0)
+    glVertex2f(-50.0, -50.0)
+    glColor3f(0.0, 1.0, 0.0)
+    glVertex2f(50.0, -50.0)
+    glColor3f(1.0, 0.0, 0.0)
+    glVertex2f(0.0, 50.0)
+    glEnd()
+
     glFlush()
 
-
-def update_viewport(window, width, height):
+def update_viewport(window, width, height): #przeskalowane okno
     if width == 0:
         width = 1
     if height == 0:
@@ -55,23 +39,26 @@ def update_viewport(window, width, height):
     glLoadIdentity()
 
     if width <= height:
-        glOrtho(-100.0, 100.0, -100.0 / aspect_ratio, 100.0 / aspect_ratio, 1.0, -1.0)
+        glOrtho(-100.0, 100.0, -100.0 / aspect_ratio, 100.0 / aspect_ratio,
+                1.0, -1.0)
     else:
-        glOrtho(-100.0 * aspect_ratio, 100.0 * aspect_ratio, -100.0, 100.0, 1.0, -1.0)
+        glOrtho(-100.0 * aspect_ratio, 100.0 * aspect_ratio, -100.0, 100.0,
+                1.0, -1.0)
 
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
 
+
 def main():
-    if not glfwInit():
+    if not glfwInit(): #czy dzialamy w trybie graficznym
         sys.exit(-1)
 
-    window = glfwCreateWindow(400, 400, "zad2", None, None)
+    window = glfwCreateWindow(400, 400, "zad1", None, None)
     if not window:
         glfwTerminate()
         sys.exit(-1)
 
-    glfwMakeContextCurrent(window)
+    glfwMakeContextCurrent(window) #mowi w ktorym oknie generujemy - mozna w kilku naraz
     glfwSetFramebufferSizeCallback(window, update_viewport)
     glfwSwapInterval(1)
 
@@ -81,6 +68,7 @@ def main():
         glfwSwapBuffers(window)
         glfwPollEvents()
     shutdown()
+
     glfwTerminate()
 
 if __name__ == '__main__':
