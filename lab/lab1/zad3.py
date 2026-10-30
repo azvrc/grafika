@@ -15,7 +15,7 @@ def startup():
 def shutdown():
     pass
 
-def rectangle(x, y, a, b, d=0.0):
+def rectangle(x, y, a, b, d=0):
     # x, y - placement, a, b - boki, d - deformacja
     x0 = x + random.uniform(-d, d)
     y0 = y + random.uniform(-d, d)
@@ -49,7 +49,7 @@ def render(time):
     glClear(GL_COLOR_BUFFER_BIT)
 
     random.seed(RANDOMIZE)
-    rectangle(-40, -50, 80.0, 100, 15)
+    rectangle(-20, -30, 80, 100, 15)
     glFlush()
 
 

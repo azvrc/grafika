@@ -35,7 +35,7 @@ def update_viewport(window, width, height): #przeskalowane okno
     aspect_ratio = width / height
 
     glMatrixMode(GL_PROJECTION)
-    glViewport(0, 0, width, height)
+    glViewport(40, 45, width, height)
     glLoadIdentity()
 
     if width <= height:

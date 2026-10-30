@@ -39,7 +39,7 @@ def rectangle(x, y, a, b):
 def render(time):
     glClear(GL_COLOR_BUFFER_BIT)
 
-    rectangle(0, 0, 100, 70)
+    rectangle(-30, -10, 100, 70)
     glFlush()
 
 
