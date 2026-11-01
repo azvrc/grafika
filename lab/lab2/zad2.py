@@ -16,9 +16,7 @@ def shutdown():
 
 
 def rectangle(x, y, a, b):
-    # x,y - placement, a - szerokość, b - wysokość
-    glBegin(GL_TRIANGLES)
-
+    # x,y - placement, a - szerokosc, b - wysokosc    glBegin(GL_TRIANGLES)
     glColor3f(1, 0, 1)
     glVertex2f(x, y)
     glColor3f(0.5, 0, 1)

@@ -6,7 +6,7 @@ from glfw.GLFW import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
-RANDOMIZE = random.randint(10, 300)
+RANDOMIZE = random.randint(11, 333)
 
 def startup():
     update_viewport(None, 400, 400)

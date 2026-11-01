@@ -5,6 +5,7 @@ from glfw.GLFW import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
+RANDOMIZE = random.randint(11, 333)
 current_mode = 1
 
 TRI_A = (-70, -50)
@@ -12,8 +13,8 @@ TRI_B = (70, -50)
 TRI_C = (0, 70)
 
 
-def chaos_points(num_points=20000):
-    random.seed(42)
+def chaos_points(num_points=10000):
+    random.seed(RANDOMIZE)
     px, py = 0, 0
     vertices = [TRI_A, TRI_B, TRI_C]
     points = []
@@ -33,7 +34,7 @@ def chaos_points(num_points=20000):
     return points, colors
 
 
-CHAOS_POINTS, CHAOS_COLORS = chaos_points(25000)
+CHAOS_POINTS, CHAOS_COLORS = chaos_points()
 
 
 def startup():
@@ -74,7 +75,7 @@ def sierpinski_rec(ax, ay, bx, by, cx, cy, depth):
         sierpinski_rec(cax, cay, bcx, bcy, cx, cy, depth - 1)
 
 def chaos_game():
-    glPointSize(1.5)
+    glPointSize(2.22)
     glBegin(GL_POINTS)
     for (px, py), (r, g, b) in zip(CHAOS_POINTS, CHAOS_COLORS):
         glColor3f(r, g, b)
@@ -86,7 +87,7 @@ def render(time):
     glClear(GL_COLOR_BUFFER_BIT)
 
     if current_mode == 1:
-        random.seed(100)
+        random.seed(RANDOMIZE)
         sierpinski_rec(TRI_A[0], TRI_A[1], TRI_B[0], TRI_B[1], TRI_C[0], TRI_C[1], depth=3)
     else:
         chaos_game()

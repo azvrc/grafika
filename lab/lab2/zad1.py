@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-#sciezka do interpretera
 import sys
 
 from glfw.GLFW import *
@@ -13,7 +12,7 @@ def startup():
 def shutdown():
     pass
 
-def render(time): #funkcja do modyfikacji - odpowiada za generowanie obrazu
+def render(time):
     glClear(GL_COLOR_BUFFER_BIT)
 
     glBegin(GL_TRIANGLES)
@@ -27,7 +26,7 @@ def render(time): #funkcja do modyfikacji - odpowiada za generowanie obrazu
 
     glFlush()
 
-def update_viewport(window, width, height): #przeskalowane okno
+def update_viewport(window, width, height):
     if width == 0:
         width = 1
     if height == 0:
@@ -50,7 +49,7 @@ def update_viewport(window, width, height): #przeskalowane okno
 
 
 def main():
-    if not glfwInit(): #czy dzialamy w trybie graficznym
+    if not glfwInit():
         sys.exit(-1)
 
     window = glfwCreateWindow(400, 400, "zad1", None, None)
@@ -58,7 +57,7 @@ def main():
         glfwTerminate()
         sys.exit(-1)
 
-    glfwMakeContextCurrent(window) #mowi w ktorym oknie generujemy - mozna w kilku naraz
+    glfwMakeContextCurrent(window)
     glfwSetFramebufferSizeCallback(window, update_viewport)
     glfwSwapInterval(1)
 
