@@ -12,7 +12,7 @@ TRI_B = (70, -50)
 TRI_C = (0, 70)
 
 
-def generate_chaos_points(num_points=20000):
+def chaos_points(num_points=20000):
     random.seed(42)
     px, py = 0, 0
     vertices = [TRI_A, TRI_B, TRI_C]
@@ -33,14 +33,14 @@ def generate_chaos_points(num_points=20000):
     return points, colors
 
 
-CHAOS_POINTS, CHAOS_COLORS = generate_chaos_points(25000)
+CHAOS_POINTS, CHAOS_COLORS = chaos_points(25000)
 
 
 def startup():
     update_viewport(None, 400, 400)
     glClearColor(0.5, 0.5, 0.5, 1.0)
-    print("Nacisnij '1' - podzial rekurencyjny")
-    print("Nacisnij '2' - wyliczanie punktow")
+    print("Naciśnij 1 - Podział rekurencyjny")
+    print("Naciśnij 2 - Gra w chaos")
 
 
 def shutdown():
@@ -51,13 +51,10 @@ def key_callback(window, key, scancode, action, mods):
     if action == GLFW_PRESS:
         if key == GLFW_KEY_1:
             current_mode = 1
-            print("Aktywny algorytm 1: podzial rekurencyjny")
         elif key == GLFW_KEY_2:
             current_mode = 2
-            print("Aktywny algorytm 2: wyliczanie punktow")
 
-
-def sierpinski_1(ax, ay, bx, by, cx, cy, depth):
+def sierpinski_rec(ax, ay, bx, by, cx, cy, depth):
     if depth == 0:
         glBegin(GL_TRIANGLES)
         glColor3f(random.random(), random.random(), random.random())
@@ -72,12 +69,11 @@ def sierpinski_1(ax, ay, bx, by, cx, cy, depth):
         bcx, bcy = (bx + cx) / 2, (by + cy) / 2
         cax, cay = (cx + ax) / 2, (cy + ay) / 2
 
-        sierpinski_1(ax, ay, abx, aby, cax, cay, depth - 1)
-        sierpinski_1(abx, aby, bx, by, bcx, bcy, depth - 1)
-        sierpinski_1(cax, cay, bcx, bcy, cx, cy, depth - 1)
+        sierpinski_rec(ax, ay, abx, aby, cax, cay, depth - 1)
+        sierpinski_rec(abx, aby, bx, by, bcx, bcy, depth - 1)
+        sierpinski_rec(cax, cay, bcx, bcy, cx, cy, depth - 1)
 
-
-def sierpinski_2():
+def chaos_game():
     glPointSize(1.5)
     glBegin(GL_POINTS)
     for (px, py), (r, g, b) in zip(CHAOS_POINTS, CHAOS_COLORS):
@@ -91,9 +87,9 @@ def render(time):
 
     if current_mode == 1:
         random.seed(100)
-        sierpinski_1(TRI_A[0], TRI_A[1], TRI_B[0], TRI_B[1], TRI_C[0], TRI_C[1], depth=3)
+        sierpinski_rec(TRI_A[0], TRI_A[1], TRI_B[0], TRI_B[1], TRI_C[0], TRI_C[1], depth=3)
     else:
-        sierpinski_2()
+        chaos_game()
 
     glFlush()
 
@@ -106,7 +102,7 @@ def update_viewport(window, width, height):
     aspect_ratio = width / height
 
     glMatrixMode(GL_PROJECTION)
-    glViewport(0, 0, width, height)
+    glViewport(40, 45, width, height)
     glLoadIdentity()
 
     if width <= height:
