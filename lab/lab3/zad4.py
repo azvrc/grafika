@@ -5,7 +5,7 @@ from glfw.GLFW import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
-N = 22 #33 tnie
+N = 33
 randomajz = np.random.randint(11,333)
 punkty = None
 kolores = None
@@ -18,12 +18,15 @@ def generuj_jajo():
 
     for i, u in enumerate(u_vals):
         for j, v in enumerate(v_vals):
-            x = (-90 * u ** 5 + 225 * u ** 4 - 270 * u ** 3 + 180 * u ** 2 - 45 * u) * np.sin(2 * np.pi * v)
+            x = (-90 * u ** 5 + 225 * u ** 4 - 270 * u ** 3 + 180 * u ** 2 - 45 * u) * np.sin(np.pi * v)
             y = (160 * u ** 4 - 320 * u ** 3 + 160 * u ** 2 - 5.0)
-            z = (-90 * u ** 5 + 225 * u ** 4 - 270 * u ** 3 + 180 * u ** 2 - 45 * u) * np.cos(2 * np.pi * v)
+            z = (-90 * u ** 5 + 225 * u ** 4 - 270 * u ** 3 + 180 * u ** 2 - 45 * u) * np.cos(np.pi * v)
             punkty[i, j] = [x, y, z]
     np.random.seed(randomajz)
     kolores = np.random.rand(N, N, 3)
+
+    for i in range(N):
+        kolores[N-1-i, N-1] = kolores[i, 0] #lustrzane odbicie w pionie
 
 def startup():
     update_viewport(None, 400, 400)

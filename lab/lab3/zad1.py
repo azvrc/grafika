@@ -5,7 +5,7 @@ from glfw.GLFW import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
-N = 33
+N = 33 #siatka N x N - na ile przedzialow dzielimy u,v w zakresie 0-1
 punkty = None
 
 def generuj_jajo():
@@ -49,22 +49,16 @@ def axes():
     glVertex3f(0.0, 0.0, 5.0)
     glEnd()
 
-def spin(angle):
-    glRotatef(angle, 1.0, 0.0, 0.0)
-    glRotatef(angle, 0.0, 1.0, 0.0)
-    glRotatef(angle, 0.0, 0.0, 1.0)
-
 def render(time):
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glLoadIdentity()
 
-    spin(time * 180 / np.pi)
     axes()
 
     glColor3f(0.5, 0.0, 1.0)
-    glPointSize(3.0)
+    glPointSize(5)
     glBegin(GL_POINTS)
-    for i in range(N):
+    for i in range(N): #przejscie po wszystkich elementach siatki
         for j in range(N):
             glVertex3fv(punkty[i, j])
     glEnd()

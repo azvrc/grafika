@@ -5,7 +5,7 @@ from glfw.GLFW import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
-N = 22 #33 tnie
+N = 33
 randomajz = np.random.randint(11,333)
 punkty = None
 kolores = None
@@ -65,8 +65,7 @@ def render(time):
     axes()
 
     glColor3f(0.5, 0.0, 1.0)
-    glPointSize(3.0)
-    glBegin(GL_LINES)
+    glBegin(GL_TRIANGLES)
     for i in range(N-1):
         for j in range(N):
             next_j = (j + 1) % N  #domkniecie siatki w osi v

@@ -62,19 +62,16 @@ def render(time):
     axes()
 
     glColor3f(0.5, 0.0, 1.0)
-    glPointSize(3.0)
+    glLineWidth(0.5)
     glBegin(GL_LINES)
     for i in range(N):
         for j in range(N):
             if i + 1 < N:
                 glVertex3fv(punkty[i, j])
-                glVertex3fv(punkty[i + 1, j])
+                glVertex3fv(punkty[i + 1, j]) #pkt laczony z sasiadem po prawej
             if j + 1 < N:
                 glVertex3fv(punkty[i, j])
-                glVertex3fv(punkty[i, j + 1])
-            else:
-                glVertex3fv(punkty[i, j])
-                glVertex3fv(punkty[i, 0])
+                glVertex3fv(punkty[i, j + 1]) #pkt laczony z sasiadem powyzej
     glEnd()
     glFlush()
 
