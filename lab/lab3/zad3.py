@@ -38,18 +38,18 @@ def axes():
     glBegin(GL_LINES)
     #X
     glColor3f(1.0, 0.0, 0.0)
-    glVertex3f(-100.0, 0.0, 0.0)
-    glVertex3f(100.0, 0.0, 0.0)
+    glVertex3f(-5.0, 0.0, 0.0)
+    glVertex3f(5.0, 0.0, 0.0)
 
     #Y
     glColor3f(0.0, 1.0, 0.0)
-    glVertex3f(0.0, -100.0, 0.0)
-    glVertex3f(0.0, 100.0, 0.0)
+    glVertex3f(0.0, -5.0, 0.0)
+    glVertex3f(0.0, 5.0, 0.0)
 
     #Z
     glColor3f(0.0, 0.0, 1.0)
-    glVertex3f(0.0, 0.0, -100.0)
-    glVertex3f(0.0, 0.0, 100.0)
+    glVertex3f(0.0, 0.0, -5.0)
+    glVertex3f(0.0, 0.0, 5.0)
     glEnd()
 
 def spin(angle):
@@ -107,11 +107,10 @@ def update_viewport(window, width, height):
     glLoadIdentity()
 
     if width <= height:
-        glOrtho(-7.5, 7.5, -7.5 / aspect_ratio, 7.5 / aspect_ratio,
-                -7.5, 7.5)
+        glOrtho(-7.5, 7.5, -7.5 / aspect_ratio, 7.5 / aspect_ratio, 7.5, -7.5)
     else:
-        glOrtho(-7.5 * aspect_ratio, 7.5 * aspect_ratio, -7.5, 7.5,
-                -7.5, 7.5)
+        glOrtho(-7.5 * aspect_ratio, 7.5 * aspect_ratio, -7.5, 7.5, 7.5, -7.5)
+
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
 
